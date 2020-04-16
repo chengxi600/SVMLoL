@@ -12,7 +12,7 @@ url_ad = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bp
 url_sup = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Support&TS%5Bspl%5D=Yes&TS%5Btournament%5D=LCS/2020%20Season/Spring%20Season&pfRunQueryFormName=TournamentStatistics"
 urls = [url_top, url_jg, url_mid, url_ad, url_sup]
 
-#takes in url and 
+#takes in url and params of data wanted
 def parse_data(url, params):
     #connect to website
     page = urllib.request.urlopen(url)

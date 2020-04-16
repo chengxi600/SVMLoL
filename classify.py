@@ -27,4 +27,25 @@ def classify(num):
     elif num == 4:
         print('Support')
 
-classify(model.predict([[0.5, 3.21, 6.14, 1.03, 216, 4.1, 12.9]]))
+#testing_data should be an array of testing data with label at end
+def get_acc(testing_data):
+    count = 0
+    total = 0
+    for features in testing_data:
+        params = features[:-1]
+        correct = features[-1]
+        total = total + 1
+        predicted = model.predict([params])
+        if predicted == correct:
+            count = count + 1      
+        print('Predicted: ' + str(predicted) + '\nActual: ' + str(correct) + '\nAccuracy: ' + str(count/total) + '\n')
+
+    return count/total
+        
+sup_2020_playoffs_url = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Support&TS%5Btournament%5D=LCS/2020%20Season/Spring%20Playoffs&pfRunQueryFormName=TournamentStatistics"
+inputs = data.parse_data(sup_2020_playoffs_url, [6, 7, 8, 11, 13, 15, 16])
+
+for params in inputs:
+    params.append(4)
+
+get_acc(inputs)
