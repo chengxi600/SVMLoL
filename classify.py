@@ -43,9 +43,13 @@ def get_acc(testing_data):
     return count/total
         
 sup_2020_playoffs_url = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Support&TS%5Btournament%5D=LCS/2020%20Season/Spring%20Playoffs&pfRunQueryFormName=TournamentStatistics"
-inputs = data.parse_data(sup_2020_playoffs_url, [6, 7, 8, 11, 13, 15, 16])
+top_2020_playoffs_url = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Top&TS%5Btournament%5D=NA%20Academy%20League/2020%20Season/Spring%20Playoffs&pfRunQueryFormName=TournamentStatistics"
+mid_2020_playoffs_url = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Mid&TS%5Btournament%5D=NA%20Academy%20League/2020%20Season/Spring%20Playoffs&pfRunQueryFormName=TournamentStatistics"
+adc_2020_playoffs_url = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=AD%20Carry&TS%5Btournament%5D=NA%20Academy%20League/2020%20Season/Spring%20Playoffs&pfRunQueryFormName=TournamentStatistics"
+jg_2020_playoffs_url = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Jungle&TS%5Btournament%5D=NA%20Academy%20League/2020%20Season/Spring%20Playoffs&pfRunQueryFormName=TournamentStatistics"
+inputs = data.parse_data(jg_2020_playoffs_url, [6, 7, 8, 11, 13, 15, 16])
 
 for params in inputs:
-    params.append(4)
+    params.append(1)
 
 get_acc(inputs)
