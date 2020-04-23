@@ -53,7 +53,22 @@ def get_feature_vec(params):
         sample_sizes.append(len(parse_data(url, params)))
     return features, sample_sizes
 
-def scaled_feature_vec(features, sample_sizes):
-    mm_scaler = preprocessing.MinMaxScaler()
-    scaled = mm_scaler.fit_transform(features)
-        return scaled, sample_sizes
+def scaled_feature_vec(features):
+    #mm_scaler = preprocessing.MinMaxScaler()
+    #scaled = mm_scaler.fit_transform(features)
+    return preprocessing.normalize(features)
+
+def get_single_feature(param, position, inputs, sample_sizes):
+    sample_sizes = np.cumsum(sample_sizes)
+
+    arr = []
+    if position == 0:
+        for sample in inputs[:sample_sizes[position]]:
+            arr.append(sample[param])
+    elif position == 5:
+        for sample in inputs[sample_sizes[position-1]:]:
+            arr.append(sample[param])
+    else:
+        for sample in inputs[sample_sizes[position-1]:sample_sizes[position]]:
+            arr.append(sample[param])
+    return arr
