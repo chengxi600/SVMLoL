@@ -4,6 +4,7 @@ import urllib
 import re
 import numpy as np
 from decimal import Decimal
+from sklearn import preprocessing
 
 url_top = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Top&TS%5Bspl%5D=Yes&TS%5Btournament%5D=LCS/2020%20Season/Spring%20Season&pfRunQueryFormName=TournamentStatistics"
 url_jg = "https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Jungle&TS%5Bspl%5D=Yes&TS%5Btournament%5D=LCS/2020%20Season/Spring%20Season&pfRunQueryFormName=TournamentStatistics"
@@ -52,3 +53,7 @@ def get_feature_vec(params):
         sample_sizes.append(len(parse_data(url, params)))
     return features, sample_sizes
 
+def scaled_feature_vec(features, sample_sizes):
+    mm_scaler = preprocessing.MinMaxScaler()
+    scaled = mm_scaler.fit_transform(features)
+        return scaled, sample_sizes
